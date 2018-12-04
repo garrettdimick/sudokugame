@@ -1,0 +1,25 @@
+package puzzle;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("sudoku.fxml"));
+        primaryStage.setTitle("Sudoku!");
+        primaryStage.setScene(new Scene(root, 610, 496));
+        primaryStage.show();
+
+    }
+
+    // Main calls the start method
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
