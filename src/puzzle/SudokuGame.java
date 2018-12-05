@@ -10,7 +10,7 @@ public class SudokuGame {
     PuzzleParser pp;
     protected char[][] originalBoard;
     protected char[][] currentBoard;
-
+    protected char[][] solvedBoard;
 
     /**
      * Constructor for sudoku game, takes a file path which is where the txt file containing the puzzle to be solved is.
@@ -19,16 +19,16 @@ public class SudokuGame {
      * @throws Exception
      */
     public SudokuGame(String filename) throws PuzzleException, FileNotFoundException {
-        this.pp = new PuzzleParser();
+
+        this.pp = new PuzzleParser(filename);
+        this.dimension = this.pp.getDimension();
+        originalBoard = new char[dimension][dimension];
+        currentBoard = new char[dimension][dimension];
+        solvedBoard = new char[dimension][dimension];
+
         this.originalBoard = buildBoardFromFile(filename);
-        //PROPERLY COPY THE BOARD HERE, DUDE
-        this.currentBoard = originalBoard;
-//        this.currentBoard = copyBoard(originalBoard);
-        System.out.println("Current Board:");
-        printBoard(currentBoard);
-        System.out.println("Original Board:");
-        System.out.print(printBoard(originalBoard));
-        this.dimension = this.pp.dimension;
+        this.currentBoard = buildBoardFromFile(filename);
+        this.solvedBoard = buildBoardFromFile(filename);
         if(!this.pp.validShape(this.dimension)){
             throw new PuzzleException(printBoard(this.originalBoard) + "\nInvalid Shape.");
         }
@@ -56,16 +56,17 @@ public class SudokuGame {
      */
 
     protected String printBoard(char[][] board){
-        StringBuilder message = new StringBuilder();
-        for(int i=0;i<this.dimension;i++)
+        StringBuilder message = new StringBuilder("The board is: \n");
+        for(int i = 0;i<board.length;i++)
         {
-            for(int j=0;j<this.dimension;j++)
+            for(int j=0;j<board.length;j++)
             {
                 message.append(board[i][j]);
                 message.append(" ");
             }
             message.append("\n");
         }
+
         return message.toString();
     }
 
@@ -105,13 +106,15 @@ public class SudokuGame {
         return true;
     }
 
-    private char[][] copyBoard(char[][] inBoard){
+    protected char[][] copyBoard(char[][] inBoard){
         if(inBoard == null){
             return null;
         }
-        char[][] resultBoard = new char[inBoard.length][];
-        for(int i = 0; i < inBoard.length; i++){
-            resultBoard[i] = inBoard[i].clone();
+        char[][] resultBoard = new char[this.dimension][this.dimension];
+        for(int i = 0; i < this.dimension; i++){
+            for(int j = 0; j < this.dimension; j++){
+                resultBoard[i][j] = inBoard[i][j];
+            }
         }
         return resultBoard;
     }
@@ -119,4 +122,6 @@ public class SudokuGame {
     protected void makeSelection(char v, int r, int c){
         currentBoard[r][c] = v;
     }
+
+
 }

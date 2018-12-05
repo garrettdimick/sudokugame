@@ -13,13 +13,18 @@ public class PuzzleParser {
     protected int dimension;
     protected ArrayList<Character> symbols = new ArrayList<Character>();
 
-    public PuzzleParser(){}
+    public PuzzleParser(String filename) throws FileNotFoundException{
+        File file = new File(filename);
+        Scanner s = new Scanner(file);
+        int dim = s.nextInt();
+        this.dimension = dim;
+    }
 
     public char[][] getBoardFromFile(String filename) throws FileNotFoundException {
         File file = new File(filename);
         Scanner s = new Scanner(file);
         int dim = s.nextInt();
-        dimension = dim;
+        this.dimension = dim;
         for(int i=0;i<dim;i++){
             symbols.add(s.next().charAt(0));
         }
@@ -38,14 +43,6 @@ public class PuzzleParser {
         return board;
     }
 
-    public void saveSolutionToFile(String file, String solution) throws IOException {
-        File f = new File(file);
-        f.createNewFile();
-        try(PrintStream out = new PrintStream(new FileOutputStream(file))){
-            out.print(solution);
-        };
-    }
-
     public boolean validSymbols(ArrayList<Character> symbolList){
         for(Character i : symbolList){
             if(!Character.isLetterOrDigit(i)){
@@ -60,5 +57,9 @@ public class PuzzleParser {
             return true;
         }
         return false;
+    }
+
+    public int getDimension(){
+        return this.dimension;
     }
 }

@@ -41,7 +41,6 @@ public class Controller implements Initializable {
 
     protected SudokuGame sg;
     protected SudokuSolver solver;
-    protected char[][] originalBoard;
     private static final int SPACING = 1;
     protected int size = 55;
     protected int x_offset = 0;
@@ -53,8 +52,17 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            sg = new SudokuGame("puzzles/Puzzle-4x4-0001.txt");
-            originalBoard = sg.originalBoard.clone();
+            sg = new SudokuGame("puzzles/Puzzle-16x16-0001.txt");
+            solver = new SudokuSolver(sg);
+            Thread solverThread = new Thread(() -> {
+                solver.solveSudoku();
+            });
+            solverThread.setDaemon(true);
+            solverThread.start();
+
+//            solver.solveSudoku();
+            sg.originalBoard = sg.copyBoard(sg.currentBoard);
+
             if(sg.dimension == 4){
                 size = 123;
                 x_offset = 50;
@@ -98,7 +106,7 @@ public class Controller implements Initializable {
         context.setLineWidth(4);
         context.strokeRoundRect(player_selection_col * size + SPACING, player_selection_row * size + SPACING, size - SPACING * 2, size - SPACING * 2, 8, 8);
 
-        char[][] initialBoard = sg.originalBoard;
+        char[][] initialBoard = sg.copyBoard(sg.currentBoard);
         for(int r = 0; r < sg.dimension;r++){
             for(int c = 0; c < sg.dimension; c++){
                 int pos_y = r * size + y_offset;
@@ -208,16 +216,15 @@ public class Controller implements Initializable {
     }
 
     public void solutionButtonPressed(){
-        sg.currentBoard = this.originalBoard.clone();
-        drawBoard(board_space.getGraphicsContext2D());
-        solver = new SudokuSolver(sg);
         solver.solveSudoku();
-        sg.currentBoard = solver.getSudokuGame().currentBoard;
+        sg.currentBoard = solver.getSudokuGame().solvedBoard;
         drawBoard(board_space.getGraphicsContext2D());
     }
 
     public void checkSubmissionButtonPressed(){
-        if(solver.checkComplete(sg.currentBoard)){
+        solver.solveSudoku();
+        char[][] solvedBoard = sg.copyBoard(solver.sg.solvedBoard);
+        if(solver.checkAllCellsFilled(sg.currentBoard) && solver.checkComplete(sg.currentBoard, sg.solvedBoard)) {
             validSolutionAlert();
         }
         else{
@@ -228,7 +235,7 @@ public class Controller implements Initializable {
     private void invalidSolutionAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Invalid Solution");
-        alert.setHeaderText("ALERT!");
+        alert.setHeaderText("OOPS");
         alert.setContentText("You may want to check for mistakes, it looks like your solution is not valid.");
         alert.showAndWait();
     }
