@@ -21,7 +21,13 @@ public class SudokuGame {
     public SudokuGame(String filename) throws PuzzleException, FileNotFoundException {
         this.pp = new PuzzleParser();
         this.originalBoard = buildBoardFromFile(filename);
-        this.currentBoard = this.originalBoard;
+        //PROPERLY COPY THE BOARD HERE, DUDE
+        this.currentBoard = originalBoard;
+//        this.currentBoard = copyBoard(originalBoard);
+        System.out.println("Current Board:");
+        printBoard(currentBoard);
+        System.out.println("Original Board:");
+        System.out.print(printBoard(originalBoard));
         this.dimension = this.pp.dimension;
         if(!this.pp.validShape(this.dimension)){
             throw new PuzzleException(printBoard(this.originalBoard) + "\nInvalid Shape.");
@@ -97,6 +103,17 @@ public class SudokuGame {
             }
         }
         return true;
+    }
+
+    private char[][] copyBoard(char[][] inBoard){
+        if(inBoard == null){
+            return null;
+        }
+        char[][] resultBoard = new char[inBoard.length][];
+        for(int i = 0; i < inBoard.length; i++){
+            resultBoard[i] = inBoard[i].clone();
+        }
+        return resultBoard;
     }
 
     protected void makeSelection(char v, int r, int c){

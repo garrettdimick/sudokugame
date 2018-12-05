@@ -35,11 +35,13 @@ public class Controller implements Initializable {
     @FXML Button button_G;
     @FXML Button button_solution;
     @FXML Button button_new;
+    @FXML Button button_submit;
 
     @FXML Canvas board_space;
 
     protected SudokuGame sg;
     protected SudokuSolver solver;
+    protected char[][] originalBoard;
     private static final int SPACING = 1;
     protected int size = 55;
     protected int x_offset = 0;
@@ -52,6 +54,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             sg = new SudokuGame("puzzles/Puzzle-4x4-0001.txt");
+            originalBoard = sg.originalBoard.clone();
             if(sg.dimension == 4){
                 size = 123;
                 x_offset = 50;
@@ -205,14 +208,15 @@ public class Controller implements Initializable {
     }
 
     public void solutionButtonPressed(){
-        sg.currentBoard = sg.originalBoard;
+        sg.currentBoard = this.originalBoard.clone();
+        drawBoard(board_space.getGraphicsContext2D());
         solver = new SudokuSolver(sg);
         solver.solveSudoku();
         sg.currentBoard = solver.getSudokuGame().currentBoard;
         drawBoard(board_space.getGraphicsContext2D());
     }
 
-    public void submitButtonPressed(){
+    public void checkSubmissionButtonPressed(){
         if(solver.checkComplete(sg.currentBoard)){
             validSolutionAlert();
         }

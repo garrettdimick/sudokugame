@@ -56,7 +56,7 @@ public class PuzzleParser {
     }
 
     public boolean validShape(int dim){
-        if(Arrays.asList(4, 9, 16, 25, 36).contains(dim)){
+        if(Arrays.asList(4, 9, 16).contains(dim)){
             return true;
         }
         return false;
