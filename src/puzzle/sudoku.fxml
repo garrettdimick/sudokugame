@@ -2,105 +2,43 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
+
+
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.Controller">
    <children>
       <GridPane alignment="CENTER" hgap="10.0" layoutX="497.0" layoutY="0.0" prefHeight="495.0" prefWidth="110.0" vgap="8.0">
          <children>
-            <Button fx:id="button_one" onMouseClicked="#buttonOnePressed" text="1" textFill="#4ca438">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_two" onMouseClicked="#buttonTwoPressed" text="2" textFill="#4ca438" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_three" onMouseClicked="#buttonThreePressed" text="3" textFill="#4ca438" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_four" onMouseClicked="#buttonFourPressed" text="4" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_five" onMouseClicked="#buttonFivePressed" text="5" textFill="#4ca438" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_six" onMouseClicked="#buttonSixPressed" text="6" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_seven" onMouseClicked="#buttonSevenPressed" text="7" textFill="#4ca438" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_eight" onMouseClicked="#buttonEightPressed" text="8" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_nine" onMouseClicked="#buttonNinePressed" text="9" textFill="#4ca438" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_A" onMouseClicked="#buttonAPressed" text="A" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_B" onMouseClicked="#buttonBPressed" text="B" textFill="#4ca438" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_C" onMouseClicked="#buttonCPressed" text="C" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_D" onMouseClicked="#buttonDPressed" text="D" textFill="#4ca438" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_E" onMouseClicked="#buttonEPressed" text="E" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_F" onMouseClicked="#buttonFPressed" text="F" textFill="#4ca438" GridPane.rowIndex="7">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button_G" onMouseClicked="#buttonGPressed" text="G" textFill="#4ca438" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Button>
+            <Button fx:id="button_one" onMouseClicked="#buttonOnePressed" text="1"></Button>
+            <Button fx:id="button_two" onMouseClicked="#buttonTwoPressed" text="2" GridPane.columnIndex="1"></Button>
+            <Button fx:id="button_three" onMouseClicked="#buttonThreePressed" text="3" GridPane.rowIndex="1"></Button>
+            <Button fx:id="button_four" onMouseClicked="#buttonFourPressed" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1"></Button>
+            <Button fx:id="button_five" onMouseClicked="#buttonFivePressed" text="5" GridPane.rowIndex="2"></Button>
+            <Button fx:id="button_six" onMouseClicked="#buttonSixPressed" text="6" GridPane.columnIndex="1" GridPane.rowIndex="2"></Button>
+            <Button fx:id="button_seven" onMouseClicked="#buttonSevenPressed" text="7" GridPane.rowIndex="3"></Button>
+            <Button fx:id="button_eight" onMouseClicked="#buttonEightPressed" text="8" GridPane.columnIndex="1" GridPane.rowIndex="3"></Button>
+            <Button fx:id="button_nine" onMouseClicked="#buttonNinePressed" text="9" GridPane.rowIndex="4"></Button>
+            <Button fx:id="button_A" onMouseClicked="#buttonAPressed" text="A" GridPane.columnIndex="1" GridPane.rowIndex="4"></Button>
+            <Button fx:id="button_B" onMouseClicked="#buttonBPressed" text="B" GridPane.rowIndex="5"></Button>
+            <Button fx:id="button_C" onMouseClicked="#buttonCPressed" text="C" GridPane.columnIndex="1" GridPane.rowIndex="5"></Button>
+            <Button fx:id="button_D" onMouseClicked="#buttonDPressed" text="D" GridPane.rowIndex="6"></Button>
+            <Button fx:id="button_E" onMouseClicked="#buttonEPressed" text="E" GridPane.columnIndex="1" GridPane.rowIndex="6"></Button>
+            <Button fx:id="button_F" onMouseClicked="#buttonFPressed" text="F" GridPane.rowIndex="7"></Button>
+            <Button fx:id="button_G" onMouseClicked="#buttonGPressed" text="G" GridPane.columnIndex="1" GridPane.rowIndex="7"></Button>
          </children>
       </GridPane>
       <Canvas fx:id="board_space" height="495.0" onMouseClicked="#boardMouseClicked" width="495.0" />
       <Button fx:id="button_solution" onMouseClicked="#solutionButtonPressed" layoutX="503.0" layoutY="5.0" mnemonicParsing="false" text="Show Solution" textFill="#49cadd" />
-      <Button fx:id="button_new" layoutX="510.0" layoutY="40.0" mnemonicParsing="false" text="New Puzzle" textFill="#49cadd" />
-      <Button fx:id="button_submit" onMouseClicked="#checkSubmissionButtonPressed" layoutX="502.0" layoutY="430.0" prefHeight="30" prefWidth="100" mnemonicParsing="false" text="Check Your Solution" textFill="#49cadd">
-         <font>
-            <Font name="Arial" size = "9.0" />
-         </font>
+      <Button fx:id="button_new" visible="false" onMouseClicked="#newButtonPressed" layoutX="510.0" layoutY="40.0" mnemonicParsing="false" text="New Puzzle" textFill="#49cadd" />
+      <Button fx:id="button_submit" onMouseClicked="#checkSubmissionButtonPressed" layoutX="502.0" layoutY="450.0" prefHeight="30" prefWidth="100" mnemonicParsing="false" text="Check Your Solution" textFill="#49cadd">
       </Button>
    </children>
+   <stylesheets>
+      <URL value="@puzzleStyle.css" />
+   </stylesheets>
 </Pane>

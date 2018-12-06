@@ -1,4 +1,4 @@
-package test;
+package puzzle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import puzzle.PuzzleParser;
@@ -12,12 +12,7 @@ class PuzzleParserTest {
 
     @Test
     public void getBoardFromFileTest() {
-        // tested in Main
-    }
-
-    @Test
-    public void saveSolutionToFileTest() {
-        // tested in Main
+        // tested in Application
     }
 
     @Test
@@ -66,9 +61,5 @@ class PuzzleParserTest {
         PuzzleParser puzPars = new PuzzleParser("puzzles/Puzzle-9x9-0001.txt");
         int dim = 12;
         assertEquals(puzPars.validShape(dim), false);
-    }
-
-    @Test
-    void getDimension() {
     }
 }

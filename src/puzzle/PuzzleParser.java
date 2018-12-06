@@ -13,6 +13,11 @@ public class PuzzleParser {
     protected int dimension;
     protected ArrayList<Character> symbols = new ArrayList<Character>();
 
+    /**
+     * Constructor
+     * @param filename
+     * @throws FileNotFoundException
+     */
     public PuzzleParser(String filename) throws FileNotFoundException{
         File file = new File(filename);
         Scanner s = new Scanner(file);

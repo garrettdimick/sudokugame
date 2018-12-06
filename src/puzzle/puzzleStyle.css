@@ -1,0 +1,18 @@
+.root {
+    -fx-background-color: powderblue;
+}
+
+.button {
+    -fx-text-fill: blueviolet;
+    -fx-font-size: 20px;
+}
+
+#button_submit{
+    -fx-text-fill: forestgreen;
+    -fx-font-size: 9px;
+}
+
+#button_solution {
+    -fx-text-fill: forestgreen;
+    -fx-font-size: 12px;
+}

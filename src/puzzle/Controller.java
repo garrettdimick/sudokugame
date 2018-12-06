@@ -52,7 +52,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            sg = new SudokuGame("puzzles/Puzzle-16x16-0001.txt");
+            sg = new SudokuGame("puzzles/Puzzle-4x4-0001.txt");
             solver = new SudokuSolver(sg);
             Thread solverThread = new Thread(() -> {
                 solver.solveSudoku();
@@ -85,7 +85,6 @@ public class Controller implements Initializable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         GraphicsContext context = board_space.getGraphicsContext2D();
         drawBoard(context);
     }
@@ -98,11 +97,11 @@ public class Controller implements Initializable {
                 int pos_y = r * size + SPACING;
                 int pos_x = c * size + SPACING;
                 int w = size - SPACING*2;
-                context.setFill(Color.LAVENDER);
+                context.setFill(Color.LIGHTGRAY);
                 context.fillRoundRect(pos_x, pos_y, w, w, 8, 8);
             }
         }
-        context.setStroke(Color.FUCHSIA);
+        context.setStroke(Color.BLUEVIOLET);
         context.setLineWidth(4);
         context.strokeRoundRect(player_selection_col * size + SPACING, player_selection_row * size + SPACING, size - SPACING * 2, size - SPACING * 2, 8, 8);
 
@@ -246,5 +245,8 @@ public class Controller implements Initializable {
         alert.setHeaderText("You did it!");
         alert.setContentText("Congratulations on solving the puzzle!");
         alert.showAndWait();
+    }
+
+    public void newButtonPressed() {
     }
 }

@@ -42,11 +42,12 @@ public class SudokuGame {
     }
 
     /**
-     * default constructor
+     * default constructor from a gameboard
+     * only used for testing
      * @param
      * @throws Exception
      */
-    public SudokuGame() throws Exception {
+    protected SudokuGame() throws PuzzleException {
     }
 
     /**
@@ -55,7 +56,7 @@ public class SudokuGame {
      * @return
      */
 
-    protected String printBoard(char[][] board){
+    public String printBoard(char[][] board){
         StringBuilder message = new StringBuilder("The board is: \n");
         for(int i = 0;i<board.length;i++)
         {
@@ -92,7 +93,7 @@ public class SudokuGame {
      * Makes sure a board is valid
      * @return
      */
-    private boolean checkValidBoard() {
+    protected boolean checkValidBoard() {
         for(int i = 0;i<dimension;i++){
             for(int j = 0;j<dimension;j++){
                 if(originalBoard[i][j] == '-'){
@@ -122,6 +123,4 @@ public class SudokuGame {
     protected void makeSelection(char v, int r, int c){
         currentBoard[r][c] = v;
     }
-
-
 }
