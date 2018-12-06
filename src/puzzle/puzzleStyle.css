@@ -1,9 +1,9 @@
 .root {
-    -fx-background-color: powderblue;
+    -fx-background-color: darkslategrey;
 }
 
 .button {
-    -fx-text-fill: blueviolet;
+    -fx-text-fill: darkseagreen;
     -fx-font-size: 20px;
 }
 

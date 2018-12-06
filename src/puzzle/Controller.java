@@ -101,7 +101,7 @@ public class Controller implements Initializable {
                 context.fillRoundRect(pos_x, pos_y, w, w, 8, 8);
             }
         }
-        context.setStroke(Color.BLUEVIOLET);
+        context.setStroke(Color.AQUAMARINE);
         context.setLineWidth(4);
         context.strokeRoundRect(player_selection_col * size + SPACING, player_selection_row * size + SPACING, size - SPACING * 2, size - SPACING * 2, 8, 8);
 
