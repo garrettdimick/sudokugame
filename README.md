@@ -1,5 +1,5 @@
 # sudokugame
-##Improvements  
+## Improvements  
 - Added a Graphical User Interface to play the game. 
 - Adding additional features and functionality to the interface should be relatively simple due to the utilization of a 
 Model View Presenter pattern.
