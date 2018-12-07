@@ -107,6 +107,11 @@ public class SudokuGame {
         return true;
     }
 
+    /**
+     * This method makes a deep copy of a board (a two dimensional array of char values)
+     * @param inBoard
+     * @return
+     */
     protected char[][] copyBoard(char[][] inBoard){
         if(inBoard == null){
             return null;
@@ -120,6 +125,12 @@ public class SudokuGame {
         return resultBoard;
     }
 
+    /**
+     * This method updates a value in a game board at r, c to v
+     * @param v
+     * @param r
+     * @param c
+     */
     protected void makeSelection(char v, int r, int c){
         currentBoard[r][c] = v;
     }

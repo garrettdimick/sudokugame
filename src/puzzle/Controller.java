@@ -59,8 +59,6 @@ public class Controller implements Initializable {
             });
             solverThread.setDaemon(true);
             solverThread.start();
-
-//            solver.solveSudoku();
             sg.originalBoard = sg.copyBoard(sg.currentBoard);
 
             if(sg.dimension == 4){
@@ -92,8 +90,25 @@ public class Controller implements Initializable {
     public void drawBoard(GraphicsContext context){
         context.clearRect(0,0,495,495);
         // Draw spaces on the board for the characters
-        for(int r = 0; r < sg.dimension;r++){
-            for(int c = 0; c < sg.dimension; c++){
+        drawSpaces(sg.dimension, context);
+
+        context.setStroke(Color.AQUAMARINE);
+        context.setLineWidth(4);
+        context.strokeRoundRect(player_selection_col * size + SPACING, player_selection_row * size + SPACING, size - SPACING * 2, size - SPACING * 2, 8, 8);
+
+        char[][] initialBoard = sg.copyBoard(sg.currentBoard);
+        drawCharacters(initialBoard, sg.dimension, context);
+
+    }
+
+    /**
+     * This method draws blank, light grey spaces in a GraphicsContext
+     * @param dimension
+     * @param context
+     */
+    public void drawSpaces(int dimension, GraphicsContext context){
+        for(int r = 0; r < dimension;r++){
+            for(int c = 0; c < dimension; c++){
                 int pos_y = r * size + SPACING;
                 int pos_x = c * size + SPACING;
                 int w = size - SPACING*2;
@@ -101,19 +116,18 @@ public class Controller implements Initializable {
                 context.fillRoundRect(pos_x, pos_y, w, w, 8, 8);
             }
         }
-        context.setStroke(Color.AQUAMARINE);
-        context.setLineWidth(4);
-        context.strokeRoundRect(player_selection_col * size + SPACING, player_selection_row * size + SPACING, size - SPACING * 2, size - SPACING * 2, 8, 8);
+    }
 
-        char[][] initialBoard = sg.copyBoard(sg.currentBoard);
-        for(int r = 0; r < sg.dimension;r++){
-            for(int c = 0; c < sg.dimension; c++){
+    public void drawCharacters(char[][] board, int dimension, GraphicsContext context){
+
+        for(int r = 0; r < dimension;r++){
+            for(int c = 0; c < dimension; c++){
                 int pos_y = r * size + y_offset;
                 int pos_x = c * size + x_offset;
                 context.setFill(Color.BLACK);
                 context.setFont(new Font(fontSize));
-                if(initialBoard[r][c] != '-'){
-                    context.fillText(initialBoard[r][c] + "", pos_x, pos_y);
+                if(board[r][c] != '-'){
+                    context.fillText(board[r][c] + "", pos_x, pos_y);
                 }
             }
         }
@@ -222,7 +236,6 @@ public class Controller implements Initializable {
 
     public void checkSubmissionButtonPressed(){
         solver.solveSudoku();
-        char[][] solvedBoard = sg.copyBoard(solver.sg.solvedBoard);
         if(solver.checkAllCellsFilled(sg.currentBoard) && solver.checkComplete(sg.currentBoard, sg.solvedBoard)) {
             validSolutionAlert();
         }
@@ -248,5 +261,6 @@ public class Controller implements Initializable {
     }
 
     public void newButtonPressed() {
+        drawSpaces(sg.dimension, board_space.getGraphicsContext2D());
     }
 }

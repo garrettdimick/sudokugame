@@ -91,6 +91,11 @@ public class SudokuSolver {
         return this.sg;
     }
 
+    /**
+     * Checks to see if a board is completely populated
+     * @param board
+     * @return
+     */
     protected boolean checkAllCellsFilled(char[][] board){
         for(int r = 0;r < sg.dimension; r++){
             for(int c = 0; c < sg.dimension; c++){
@@ -102,6 +107,12 @@ public class SudokuSolver {
         return true;
     }
 
+    /**
+     * Checks to see if two boards are identical, used to verify user solutions
+     * @param board1
+     * @param board2
+     * @return
+     */
     protected boolean checkComplete(char[][] board1, char[][]board2){
         if(board1 == null){
             return (board2 == null);

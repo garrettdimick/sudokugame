@@ -25,6 +25,12 @@ public class PuzzleParser {
         this.dimension = dim;
     }
 
+    /**
+     * Generates a sudoku board from a file
+     * @param filename
+     * @return
+     * @throws FileNotFoundException
+     */
     public char[][] getBoardFromFile(String filename) throws FileNotFoundException {
         File file = new File(filename);
         Scanner s = new Scanner(file);
@@ -48,6 +54,11 @@ public class PuzzleParser {
         return board;
     }
 
+    /**
+     * Check if a series of symbols are valid for a sudoku game
+     * @param symbolList
+     * @return
+     */
     public boolean validSymbols(ArrayList<Character> symbolList){
         for(Character i : symbolList){
             if(!Character.isLetterOrDigit(i)){
@@ -57,6 +68,11 @@ public class PuzzleParser {
         return true;
     }
 
+    /**
+     * Check if the puzzle will be a valid size
+     * @param dim
+     * @return
+     */
     public boolean validShape(int dim){
         if(Arrays.asList(4, 9, 16).contains(dim)){
             return true;
